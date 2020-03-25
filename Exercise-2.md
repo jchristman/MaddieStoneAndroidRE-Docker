@@ -20,7 +20,7 @@ You are a malware analyst for Android applications. You are concerned that this 
 
 - [x] Remember that the manifest is available under “Resources” by clicking on AndroidManifest.xml. To analyze the DEX bytecode, you can ~click on classes under the source code tab to open each class~ browse through the classes under `ThaiCamera/sources`. jadx is a decompiler, rather than a disassembler, so it decompiles the DEX bytecode back to the Java. The decompiled Java will not look exactly the same as when the developer wrote it, however, it’s often pretty close to functionally correct.
 
-- [ ] Begin analyzing the classes you identified as starting points in Exercise #1. When I say analyze, it’s as simple as reading each line of decompiled output until you understand what a block of code is doing. Once you understand it, take a step back and evaluate the new information you learned against the questions you’re trying to answer with your analysis (Exercise Context). Then decide where to analyze next. If you come from a Java development background, think about reverse engineering as debugging.
+- [x] Begin analyzing the classes you identified as starting points in Exercise #1. When I say analyze, it’s as simple as reading each line of decompiled output until you understand what a block of code is doing. Once you understand it, take a step back and evaluate the new information you learned against the questions you’re trying to answer with your analysis (Exercise Context). Then decide where to analyze next. If you come from a Java development background, think about reverse engineering as debugging.
 
 The code in `Loading.java` appears to send SMS messages to a number that is returned from an HTTP request without asking disclosing that it is doing so. Relevant code:
 
@@ -75,3 +75,7 @@ public void sendMessage(String mobile, String content2) {
     }
 }
 ```
+
+## Conclusion
+
+Yes, the app sends potentially premium messages without asking for permission
