@@ -1,4 +1,4 @@
-# Exercise 1
+# Exercise 1 - Getting Started
 
 ## Goals:
 
@@ -7,7 +7,7 @@
 
 ## Instructions
 
-- [x] ~Start jadx by opening the terminal in the VM and running the jadx-gui command in the terminal.~ Start the Android RE docker container from the `samples` directory. `cd `ThaiCamera`.
+- [x] ~Start jadx by opening the terminal in the VM and running the jadx-gui command in the terminal.~ Start the Android RE docker container from the `samples` directory. `cd ThaiCamera`.
 - [x] ~Open ThaiCamera.apk in the jadx GUI. It’s in the VM’s path at ~/samples/ThaiCamera.apk. When you open the application in jadx, you will see the following. Under the Source Code heading, the packages (namespaces for the Java classes) included in the application.~ Execute `jadx ThaiCamera.apk`
 - [x] ~By clicking on the expansion tab of “Resources”,~ You can see the contents of the APK by using your favorite editor to look in the `ThaiCamera` folder. Some of the most interesting are the Manifest (AndroidManifest.xml), classes.dex (contains the DEX bytecode that is decompiled under the “Source Code” tab), and the assets/ folder which contains any other files the APK may need to run.
 - [x] Open AndroidManifest.xml and identify any of the application entry points described in the Application Entry Points section.
