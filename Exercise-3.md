@@ -12,7 +12,7 @@ You are auditing a set of phones for security issues prior to allowing them onto
 
 - [x] Start jadx as described in Exercise #1 and open FotaProvider.apk.
 
-- [ ] Use the Manifest to identify interesting components and the bytecode to analyze the code.
+- [x] Use the Manifest to identify interesting components and the bytecode to analyze the code.
 
 Entry Points of interest:
 
@@ -23,6 +23,26 @@ Entry Points of interest:
     </intent-filter>
 </service>
 
+<receiver android:label="WriteCommandReceiver" android:name="com.adups.fota.sysoper.WriteCommandReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.AdupsFota.WriteCommandReceiver"/>
+        <action android:name="android.intent.action.AdupsFota.OperReceiver"/>
+    </intent-filter>
+</receiver>
+
+<receiver android:name="com.adups.fota.sysoper.TaskReceiver">
+    <intent-filter>
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+        <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+    </intent-filter>
+    <intent-filter>
+        <action android:name="android.intent.action.PACKAGE_ADDED"/>
+        <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+        <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+        <data android:scheme="package"/>
+    </intent-filter>
+</receiver>
+
 <service android:label="AppService" android:name="com.dataeye.channel.DCAppService" android:persistent="true" android:exported="true" android:process=":de_service">
     <intent-filter android:priority="1000">
         <action android:name="com.dataeye.channel.action.INVOKE_SERVICE"/>
@@ -30,6 +50,8 @@ Entry Points of interest:
 </service>
 ```
 
-Source analysis
+- [x] Find a code path that allows other applications or code on the phone to run arbitrary commands as a privileged user.
 
-- [ ] Find a code path that allows other applications or code on the phone to run arbitrary commands as a privileged user.
+WriteCommandReceiver has a function that will execute arbitrary commands if an intent is sent with the action of `android.intent.action.AdupsFota.operReceiver`. If there is an extra string called `cmd`, that string will be executed via `ProcessBuilder`
+
+
